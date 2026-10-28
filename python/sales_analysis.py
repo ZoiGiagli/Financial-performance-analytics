@@ -1,6 +1,7 @@
+﻿from pathlib import Path
 import pandas as pd
 
-df = pd.read_csv("sales_data.csv")
+df = pd.read_csv(Path(__file__).resolve().parent.parent / "data" / "sales_data.csv")
 
 df["profit"] = df["revenue"] - df["cost"]
 
@@ -28,4 +29,5 @@ df["month"] = df["order_date"].dt.to_period("M")
 revenue_by_month = df.groupby("month")["revenue"].sum()
 
 print("Revenue by month:",  revenue_by_month)
+
 
